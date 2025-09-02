@@ -1,26 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --spacing: 0.0625rem;
+
+  --font-intern: "Inter", sans-serif;
+
+  --color-secondary: #20304f;
+
+  --color-gray: #6e6d6d;
+
+  --color-dm-primary: #d93644;
+  --color-dm-secondary: #363859;
+
+  /* Logo sizes */
+  --text-logo-xl: clamp(
+    7rem,
+    calc(0.026rem + 27.895vw),
+    33.5rem
+  ); /* min: 112px, max: 536px */
+  --text-logo-lg: clamp(
+    5.938rem,
+    calc(0rem + 23.75vw),
+    28.5rem
+  ); /* min: 95px, max: 456px */
+
+  /* Display/Hero sizes */
+  --text-display-xl: clamp(
+    4.5rem,
+    calc(0.947rem + 14.211vw),
+    18rem
+  ); /* min: 72px, max: 288px */
+  --text-display-lg: clamp(
+    2.5rem,
+    calc(1.842rem + 2.632vw),
+    5rem
+  ); /* min: 40px, max: 80px */
+
+  --text-outline-krakov: clamp(
+    1.5rem,
+    calc(0.579rem + 3.684vw),
+    5rem
+  ); /* min: 24px, max: 80px */
+
+  /* Heading sizes */
+  --text-4xl: clamp(
+    2.5rem,
+    calc(1.974rem + 2.105vw),
+    4.5rem
+  ); /* min: 40px, max: 72px */
+  --text-3xl: clamp(
+    1.5rem,
+    calc(0.711rem + 3.158vw),
+    4.5rem
+  ); /* min: 24px, max: 72px */
+  --text-35xl: clamp(
+    2rem,
+    calc(1.474rem + 2.105vw),
+    4rem
+  ); /* min: 32px, max: 64px */
+  --text-2xl: clamp(
+    1.5rem,
+    calc(1.368rem + 0.526vw),
+    2rem
+  ); /* min: 24px, max: 32px */
+
+  /* Body text sizes */
+  --text-xl: clamp(
+    1rem,
+    calc(0.868rem + 0.526vw),
+    1.5rem
+  ); /* min: 16px, max: 24px */
+  --text-sm: clamp(
+    0.75rem,
+    calc(0.553rem + 0.789vw),
+    1.5rem
+  ); /* min: 12px, max: 24px */
+  --text-base: clamp(1rem, calc(1rem + 0vw), 1rem); /* min: 16px, max: 16px */
+
+  /* Paddings */
+  --padding-xs: clamp(
+    0.5rem,
+    calc(0.007rem + 1.974vw),
+    2.375rem
+  ); /* min: 8px, max: 38px */
+
+  --radius-custom-big: clamp(
+    1.25rem,
+    calc(0.987rem + 1.053vw),
+    2.25rem
+  ); /* min: 20px, max: 36px */
+  /* --radius-tr-custom: clamp(1.25rem, calc(0.987rem + 1.053vw), 2.25rem); min: 20px, max: 36px */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --gradient-start: #20304f;
+    --gradient-mid: #e2373e;
+    --gradient-end: #f4861e;
+    font-family: "Inter", sans-serif;
+  }
+
+  .logo-lg {
+    @apply text-logo-lg leading-[70%] font-bold;
+  }
+
+  .text-display-lg {
+    @apply text-display-lg leading-[115%] font-bold;
+  }
+
+  .text-4xl {
+    @apply text-4xl font-bold;
+  }
+
+  .text-outline-krakov {
+    @apply text-outline-krakov font-bold;
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+  }
+
+  .text-outline-thick {
+    -webkit-text-stroke: 3px white;
+    color: transparent;
+  }
+
+  .text-outline-black {
+    -webkit-text-stroke: 3px rgb(0, 0, 0);
+    color: transparent;
+  }
+
+  .text-gradient {
+    @apply font-bold bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      90deg,
+      var(--gradient-start),
+      var(--gradient-mid),
+      var(--gradient-end)
+    );
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
