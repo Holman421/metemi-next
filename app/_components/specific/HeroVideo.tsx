@@ -5,16 +5,14 @@ export default function HeroVideo() {
   return (
     <div className="flex-1 relative anim-fade-right translate-y-58 md:translate-y-0">
       <video
+        src="/videos/hero.mp4"
         className="w-full h-auto rounded-tl-custom-big rounded-bl-custom-big aspect-[91/102] object-cover translate-x-40"
         autoPlay
         loop
         muted
         playsInline
-        webkit-playsinline="true"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        aria-label="Video Thumbnail"
+      />
       <h2 className="absolute left-[20%] bottom-[30%] md:bottom-[40%] text-35xl font-bold text-white leading-[110%]">
         Don&apos;t <br /> tweet. Meet.
       </h2>
