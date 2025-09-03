@@ -17,7 +17,7 @@ export default function VideosRightSide() {
           data-offset-mobile="0"
         />
         <Image
-          src="/images/test-img.jpg"
+          src="/images/videos-right.jpg"
           alt="Video Thumbnail"
           width={291}
           height={529}

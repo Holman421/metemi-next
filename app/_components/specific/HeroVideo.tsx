@@ -10,7 +10,7 @@ export default function HeroVideo() {
         muted
         loop
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <h2 className="absolute left-[20%] bottom-[30%] md:bottom-[40%] text-35xl font-bold text-white leading-[110%]">
