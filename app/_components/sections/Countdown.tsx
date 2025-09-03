@@ -81,13 +81,14 @@ export default function Countdown() {
       }
     );
 
-    if (countdownRef.current) {
-      observer.observe(countdownRef.current);
+    const node = countdownRef.current;
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (countdownRef.current) {
-        observer.unobserve(countdownRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
   }, []);

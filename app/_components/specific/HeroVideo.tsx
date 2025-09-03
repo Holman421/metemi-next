@@ -14,7 +14,7 @@ export default function HeroVideo() {
         Your browser does not support the video tag.
       </video>
       <h2 className="absolute left-[20%] bottom-[30%] md:bottom-[40%] text-35xl font-bold text-white leading-[110%]">
-        Don't <br /> tweet. Meet.
+        Don&apos;t <br /> tweet. Meet.
       </h2>
 
       <div className="flex absolute -bottom-90 right-32 md:hidden flex-col items-end w-fit self-end gap-4 z-[3]">

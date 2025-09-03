@@ -1,5 +1,4 @@
 import React from "react";
-import OutlinedTextSVG from "../shared/ui/OutlinedTextSVG";
 import NavButton from "./NavButton";
 
 export default function HeroHeader() {

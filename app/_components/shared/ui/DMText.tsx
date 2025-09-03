@@ -49,7 +49,7 @@ export const DMText = ({
     let typingInterval: number | null = null;
     let heightTween: gsap.core.Tween | null = null;
     let dotTween: gsap.core.Tween | null = null;
-    let trigger: any = null;
+  let trigger: ReturnType<typeof ScrollTrigger.create> | null = null;
 
     trigger = ScrollTrigger.create({
       trigger: container,
@@ -131,7 +131,7 @@ export const DMText = ({
       },
     });
 
-    return () => {
+  return () => {
       if (typingInterval) clearInterval(typingInterval);
       heightTween?.kill();
       dotTween?.kill();

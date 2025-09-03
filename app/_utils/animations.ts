@@ -166,9 +166,10 @@ function textLinesGradientAnimation() {
       // Apply gradient to each line
       lineElement.style.backgroundImage =
         "linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end))";
-      (lineElement.style as any).webkitBackgroundClip = "text";
+      // Vendor-prefixed background-clip for Safari
+      lineElement.style.setProperty("-webkit-background-clip", "text");
       lineElement.style.backgroundClip = "text";
-      (lineElement.style as any).webkitTextFillColor = "transparent";
+      lineElement.style.setProperty("-webkit-text-fill-color", "transparent");
       lineElement.style.color = "transparent";
     });
 
@@ -225,8 +226,7 @@ function parallaxAnimation() {
 
   parallaxElements.forEach((element) => {
     const htmlElement = element as HTMLElement;
-    const speed = parseFloat(htmlElement.dataset.speed || "1");
-    const speedMobile = parseFloat(htmlElement.dataset.speedMobile || htmlElement.dataset.speed || "1");
+    // read but do not keep unused locals; values are consumed in tween callback below
     const offset = parseFloat(htmlElement.dataset.offset || "0");
     const offsetMobile = parseFloat(htmlElement.dataset.offsetMobile || htmlElement.dataset.offset || "0");
     const isMobile = window.innerWidth < 768;
