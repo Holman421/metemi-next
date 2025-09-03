@@ -95,19 +95,28 @@ export default function Countdown() {
   return (
     <div
       ref={countdownRef}
-      className="flex relative justify-between w-[70vw] mx-auto"
+      className="flex relative justify-between w-[85vw] md:w-[80vw] lg:w-[70vw] mx-auto mt-150 md:mt-0"
     >
       <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
-        {daysLeft} <span className="text-[64px] transform -ml-60">d</span>
+        {daysLeft}{" "}
+        <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
+          d
+        </span>
       </div>
       <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
-        {hoursLeft} <span className="text-[64px] transform -ml-60">h</span>
+        {hoursLeft}{" "}
+        <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
+          h
+        </span>
       </div>
       <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
-        {minutesLeft} <span className="text-[64px] transform -ml-60">m</span>
+        {minutesLeft}{" "}
+        <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
+          m
+        </span>
       </div>
-      <div className="absolute left-[10%] bottom-[-2.5%] flex gap-16">
-        <div className="size-150 rounded-[30px] relative overflow-hidden flex items-center justify-center">
+      <div className="absolute left-[10%] bottom-[-20%] md:bottom-[-2.5%] flex gap-16">
+        <div className="anim-pop-in size-[clamp(3.75rem,calc(2.27rem+5.921vw),9.375rem)] rounded-custom-big relative overflow-hidden flex items-center justify-center">
           <Image
             src="/images/rectangle-bg.jpg"
             alt="Logo"
@@ -115,11 +124,11 @@ export default function Countdown() {
             height={150}
             className="size-full absolute"
           />
-          <LetterMIcon className="size-75 relative z-[2]" />
+          <LetterMIcon className="size-[clamp(1.75rem,calc(0.977rem+3.092vw),4.688rem)] relative z-[2]" />
         </div>
-      <p className="text-4xl text-gradient">
-        We are <br /> Coming Soon.
-      </p>
+        <p className="text-3xl anim-text-lines-gradient font-bold leading-[95%]">
+          We are <br /> Coming Soon.
+        </p>
       </div>
     </div>
   );

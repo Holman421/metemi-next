@@ -45,6 +45,30 @@ function popInAnimation() {
   });
 }
 
+function fadeInAnimation() {
+  const elements = document.querySelectorAll(".anim-fade-in");
+
+  elements.forEach((element) => {
+    gsap.set(element, {
+      opacity: 0,
+      y: "100%",
+    });
+
+    gsap.to(element, {
+      duration: 0.8,
+      opacity: 1,
+      y: "0%",
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "-100% 80%",
+        once: true,
+        markers: false,
+      },
+    });
+  });
+}
+
 function fadeLeftAnimation() {
   const elements = document.querySelectorAll(".anim-fade-left");
 
@@ -99,9 +123,9 @@ function textLinesAnimation() {
   const textElements = document.querySelectorAll(".anim-text-lines");
 
   textElements.forEach((element) => {
-    const split = new SplitText(element, { type: "lines" });
+  // Disable auto aria-label injection from SplitText to avoid Lighthouse warnings
+  const split = new SplitText(element, { type: "lines", aria: "none" });
 
-    // Set initial state immediately (no animation)
     gsap.set(split.lines, {
       opacity: 0,
       y: "100%",
@@ -118,6 +142,55 @@ function textLinesAnimation() {
           trigger: line,
           start: "top 90%",
           once: true,
+          markers: false,
+        },
+      });
+    });
+  });
+}
+
+function textLinesGradientAnimation() {
+  const textElements = document.querySelectorAll(".anim-text-lines-gradient");
+
+  textElements.forEach((element) => {
+  // Add a class to lines so we can control layout precisely
+  // Also disable auto aria-label injection to satisfy Lighthouse
+  const split = new SplitText(element, { type: "lines", linesClass: "split-line", aria: "none" });
+
+    // Ensure lines reveal from below without clipping descenders
+    split.lines.forEach((line) => {
+      const lineElement = line as HTMLElement;
+      lineElement.style.overflow = "visible"; // prevent cutting glyph descenders (e.g., J, g, y)
+      lineElement.style.display = "block"; // consistent box for transforms
+      lineElement.style.paddingBottom = "0.12em"; // small buffer so descenders aren't cropped
+      // Apply gradient to each line
+      lineElement.style.backgroundImage =
+        "linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end))";
+      (lineElement.style as any).webkitBackgroundClip = "text";
+      lineElement.style.backgroundClip = "text";
+      (lineElement.style as any).webkitTextFillColor = "transparent";
+      lineElement.style.color = "transparent";
+    });
+
+    // Use yPercent for smoother, box-size-relative motion
+    gsap.set(split.lines, {
+      opacity: 0,
+      yPercent: 100,
+      force3D: true,
+    });
+
+    split.lines.forEach((line, index) => {
+      gsap.to(line, {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: index * 0.15,
+        scrollTrigger: {
+          trigger: line,
+          start: "top 90%",
+          once: true,
+          markers: false,
         },
       });
     });
@@ -147,6 +220,94 @@ function outlineTextReveal() {
   });
 }
 
+function parallaxAnimation() {
+  const parallaxElements = document.querySelectorAll(".parallax");
+
+  parallaxElements.forEach((element) => {
+    const htmlElement = element as HTMLElement;
+    const speed = parseFloat(htmlElement.dataset.speed || "1");
+    const speedMobile = parseFloat(htmlElement.dataset.speedMobile || htmlElement.dataset.speed || "1");
+    const offset = parseFloat(htmlElement.dataset.offset || "0");
+    const offsetMobile = parseFloat(htmlElement.dataset.offsetMobile || htmlElement.dataset.offset || "0");
+    const isMobile = window.innerWidth < 768;
+    const initialOffset = isMobile && htmlElement.dataset.offsetMobile
+      ? offsetMobile
+      : offset;
+
+    // Set initial offset position
+    gsap.set(element, {
+      y: initialOffset,
+    });
+
+    gsap.to(element, {
+      y: (i, target) => {
+        const targetElement = target as HTMLElement;
+        const isMobile = window.innerWidth < 768;
+        const elementSpeed = isMobile && targetElement.dataset.speedMobile
+          ? parseFloat(targetElement.dataset.speedMobile)
+          : parseFloat(targetElement.dataset.speed || "1");
+        const elementOffset = isMobile && targetElement.dataset.offsetMobile
+          ? parseFloat(targetElement.dataset.offsetMobile)
+          : parseFloat(targetElement.dataset.offset || "0");
+        return elementOffset + elementSpeed * 100;
+      },
+      ease: "none",
+      scrollTrigger: {
+        trigger: element,
+        start: "top bottom",
+        scrub: true,
+      },
+    });
+  });
+
+  // Object-position parallax for images/videos with a special class
+  // Usage: add class "parallax-object" and optional data attributes:
+  // data-offset-x (default 50), data-offset-y (default 50), data-speed-x (default 0), data-speed-y (default 1)
+  // data-speed-mobile can be used to override data-speed-x and data-speed-y on mobile (below 768px)
+  // data-offset-x-mobile and data-offset-y-mobile can be used to override offsets on mobile (below 768px)
+  const objectParallaxEls = document.querySelectorAll(".parallax-object");
+
+  objectParallaxEls.forEach((element) => {
+    const media = element as HTMLElement;
+    const isMobile = window.innerWidth < 768;
+    
+    const offsetX = isMobile && media.dataset.offsetXMobile
+      ? parseFloat(media.dataset.offsetXMobile)
+      : parseFloat(media.dataset.offsetX || "50");
+    const offsetY = isMobile && media.dataset.offsetYMobile
+      ? parseFloat(media.dataset.offsetYMobile)
+      : parseFloat(media.dataset.offsetY || "50");
+    
+    // Check for mobile speed override
+    const speedX = isMobile && media.dataset.speedMobile
+      ? parseFloat(media.dataset.speedMobile)
+      : parseFloat(media.dataset.speedX || "0");
+    const speedY = isMobile && media.dataset.speedMobile
+      ? parseFloat(media.dataset.speedMobile)
+      : parseFloat(media.dataset.speedY || "1");
+
+    // Set initial object-position
+    media.style.objectPosition = `${offsetX}% ${offsetY}%`;
+
+    const proxy = { x: offsetX, y: offsetY };
+
+    gsap.to(proxy, {
+      x: offsetX + speedX * 100,
+      y: offsetY + speedY * 100,
+      ease: "none",
+      onUpdate: () => {
+        media.style.objectPosition = `${proxy.x}% ${proxy.y}%`;
+      },
+      scrollTrigger: {
+        trigger: element,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  });
+}
+
 export function initAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(SplitText);
@@ -154,7 +315,10 @@ export function initAnimations() {
   logoSplitAnimation();
   outlineTextReveal();
   textLinesAnimation();
+  textLinesGradientAnimation();
   popInAnimation();
+  fadeInAnimation();
   fadeLeftAnimation();
   fadeRightAnimation();
+  parallaxAnimation();
 }

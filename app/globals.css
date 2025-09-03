@@ -13,6 +13,13 @@
   --color-dm-primary: #d93644;
   --color-dm-secondary: #363859;
 
+  --color-button-gradient: linear-gradient(
+    to right,
+    #20304f -22%,
+    #e2373e 25%,
+    #f4861e 72%
+  );
+
   /* Logo sizes */
   --text-logo-xl: clamp(
     7rem,
@@ -59,11 +66,22 @@
     calc(1.474rem + 2.105vw),
     4rem
   ); /* min: 32px, max: 64px */
+  --text-35small: clamp(
+    1rem,
+    calc(0.211rem + 3.158vw),
+    4rem
+  ); /* min: 16px, max: 64px */
   --text-2xl: clamp(
     1.5rem,
     calc(1.368rem + 0.526vw),
     2rem
   ); /* min: 24px, max: 32px */
+
+  --text-2xl-small: clamp(
+    1rem,
+    calc(0.737rem + 1.053vw),
+    2rem
+  ); /* min: 16px, max: 32px */
 
   /* Body text sizes */
   --text-xl: clamp(
@@ -77,6 +95,11 @@
     1.5rem
   ); /* min: 12px, max: 24px */
   --text-base: clamp(1rem, calc(1rem + 0vw), 1rem); /* min: 16px, max: 16px */
+  --text-xs: clamp(
+    0.75rem,
+    calc(0.684rem + 0.263vw),
+    1rem
+  ); /* min: 12px, max: 16px */
 
   /* Paddings */
   --padding-xs: clamp(
@@ -85,12 +108,17 @@
     2.375rem
   ); /* min: 8px, max: 38px */
 
+  /* Rounded */
   --radius-custom-big: clamp(
     1.25rem,
     calc(0.987rem + 1.053vw),
     2.25rem
   ); /* min: 20px, max: 36px */
-  /* --radius-tr-custom: clamp(1.25rem, calc(0.987rem + 1.053vw), 2.25rem); min: 20px, max: 36px */
+  --radius-custom-xl: clamp(
+    1.5rem,
+    calc(-0.079rem + 6.316vw),
+    7.5rem
+  ); /* min: 24px, max: 120px */
 }
 
 @layer base {
@@ -110,7 +138,7 @@
   }
 
   .text-4xl {
-    @apply text-4xl font-bold;
+    @apply text-4xl;
   }
 
   .text-outline-krakov {
@@ -130,21 +158,26 @@
   }
 
   .text-outline-black {
-    -webkit-text-stroke: 3px rgb(0, 0, 0);
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
     color: transparent;
   }
 
   .text-gradient {
-    @apply font-bold bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      var(--gradient-start),
-      var(--gradient-mid),
-      var(--gradient-end)
-    );
+    @apply font-bold;
+    background-image: var(--color-button-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .bg-button-gradient {
+    background: var(--color-button-gradient);
   }
 }
 
 body {
   overflow-x: hidden;
 }
+
+/* (NavButton custom CSS removed; using Tailwind utilities instead) */

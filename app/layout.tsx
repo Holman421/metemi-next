@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientAnimations from "./_components/shared/ui/ClientAnimations";
 import Navigation from "./_components/shared/layout/Navigation";
 import Footer from "./_components/shared/layout/Footer";
+import LenisProvider from "./_components/shared/ui/LenisProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
-        <Navigation />
-        <ClientAnimations />
-        {children}
-        <Footer />
+      <body className={`antialiased max-w-1920`}>
+        <LenisProvider>
+          <Navigation />
+          <ClientAnimations />
+          {children}
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
