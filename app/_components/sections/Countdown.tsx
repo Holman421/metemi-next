@@ -98,19 +98,19 @@ export default function Countdown() {
       ref={countdownRef}
       className="flex relative justify-between w-[85vw] md:w-[80vw] lg:w-[70vw] mx-auto mt-150 md:mt-0"
     >
-      <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
+      <div className="text-display-xl font-bold text-outline-black whitespace-nowrap">
         {daysLeft}{" "}
         <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
           d
         </span>
       </div>
-      <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
+      <div className="text-display-xl font-bold text-outline-black whitespace-nowrap">
         {hoursLeft}{" "}
         <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
           h
         </span>
       </div>
-      <div className="text-display-xl opacity-30 font-bold text-outline-black whitespace-nowrap">
+      <div className="text-display-xl font-bold text-outline-black whitespace-nowrap">
         {minutesLeft}{" "}
         <span className="text-35small transform -ml-[clamp(1.25rem,calc(0.592rem+2.632vw),3.75rem)]">
           m

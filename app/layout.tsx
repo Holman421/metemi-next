@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased max-w-1920`}>
+      <body className={`antialiased max-w-full overflow-x-hidden`}>
         <LenisProvider>
           <Navigation />
           <ClientAnimations />

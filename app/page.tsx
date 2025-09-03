@@ -5,7 +5,7 @@ import Videos from "./_components/sections/Videos";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="max-w-full overflow-x-hidden">
       <Hero />
       <Countdown />
       <Videos />

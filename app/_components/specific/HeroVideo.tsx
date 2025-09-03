@@ -7,8 +7,9 @@ export default function HeroVideo() {
       <video
         className="w-full h-auto rounded-tl-custom-big rounded-bl-custom-big aspect-[91/102] object-cover translate-x-40"
         autoPlay
-        muted
         loop
+        muted
+        playsInline
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
