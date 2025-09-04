@@ -1,17 +1,14 @@
 import Image from "next/image";
 import { DMText } from "../shared/ui/DMText";
+import Video from "../shared/ui/Video";
 
 export default function VideosLeftSide() {
   return (
     <div className="w-full lg:w-[60%]">
       <div className="w-full aspect-square relative mt-100 lg:mt-168">
-        <video
+        <Video
           src="/videos/videos-main.mp4"
           className="object-cover w-full h-full rounded-4xl aspect-[121/134]"
-          autoPlay
-          loop
-          muted
-          playsInline
           aria-label="Video Thumbnail"
         />
         <div className="absolute left-[clamp(3.125rem,calc(1.908rem+4.868vw),7.75rem)] bottom-[-17.5%] md:bottom-[-5.5%] lg:bottom-[-15%] flex flex-col w-full">
