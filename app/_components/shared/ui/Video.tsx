@@ -33,12 +33,21 @@ export default function Video({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !autoPlay) return;
+    if (!video || !autoPlay) {
+      console.log("Video ref or autoPlay condition not met:", { video: !!video, autoPlay });
+      return;
+    }
+
+    console.log("Setting up video autoplay for:", src);
+    console.log("Video readyState:", video.readyState);
 
     const tryPlay = async () => {
       try {
+        console.log("Attempting to autoplay video");
         await video.play();
+        console.log("Video autoplay successful");
       } catch (error) {
+        console.log("Autoplay failed, setting up user interaction fallback:", error);
         // If autoplay fails, set up fallback for user interaction
         const playOnInteraction = () => {
           video.play().catch(console.warn);
@@ -51,13 +60,20 @@ export default function Video({
       }
     };
 
-    // Try to play when video can play
-    video.addEventListener("canplay", tryPlay, { once: true });
+    // If video is already ready, try to play immediately
+    if (video.readyState >= 3) { // HAVE_FUTURE_DATA or higher
+      console.log("Video already loaded, trying to play immediately");
+      tryPlay();
+    } else {
+      console.log("Video not ready, waiting for canplay event");
+      // Try to play when video can play
+      video.addEventListener("canplay", tryPlay, { once: true });
+    }
 
     return () => {
       video.removeEventListener("canplay", tryPlay);
     };
-  }, [autoPlay]);
+  }, [autoPlay, src]);
 
   return (
     <video
