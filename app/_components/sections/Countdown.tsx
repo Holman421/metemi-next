@@ -116,7 +116,7 @@ export default function Countdown() {
           m
         </span>
       </div>
-      <div className="absolute left-[10%] bottom-[-20%] md:bottom-[-2.5%] flex gap-16">
+      <div className="absolute left-[10%] bottom-[-30%] md:bottom-[-15%] flex gap-16">
         <div className="anim-pop-in size-[clamp(3.75rem,calc(2.27rem+5.921vw),9.375rem)] rounded-custom-big relative overflow-hidden flex items-center justify-center">
           <Image
             src="/images/rectangle-bg.jpg"

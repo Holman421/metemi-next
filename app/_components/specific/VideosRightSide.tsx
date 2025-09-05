@@ -1,32 +1,30 @@
 import Image from "next/image";
 import { DMText } from "../shared/ui/DMText";
+import Video from "../shared/ui/Video";
 
 export default function VideosRightSide() {
   return (
     <div className="w-full lg:w-[40%] flex flex-col-reverse lg:flex-col">
       <div className="flex gap-8 lg:gap-16 w-full relative mt-60 lg:-mt-64">
-        <Image
-          src="/images/test-img.jpg"
-          alt="Video Thumbnail"
-          width={366}
-          height={558}
+        <Video
+          src="/videos/videos-small-left.mp4"
           className="object-cover mt-10 lg:mt-150 rounded-4xl flex-1 min-w-0 parallax"
+          aria-label="Girl running"
           data-speed="1.5"
           data-speed-mobile="-0.75"
           data-offset="-50"
           data-offset-mobile="0"
         />
-        <Image
-          src="/images/videos-right.jpg"
-          alt="Video Thumbnail"
-          width={291}
-          height={529}
+        <Video
+          src="/videos/videos-small-right.mp4"
           className="object-cover rounded-4xl flex-1 min-w-0 parallax"
+          aria-label="Two girls smilingWhy"
           data-speed="-1.5"
           data-speed-mobile="0.5"
           data-offset="100"
           data-offset-mobile="-50"
         />
+
         <div className="absolute -right-4 lg:-right-64 -bottom-32 lg:-bottom-100">
           <DMText
             rounded="right"

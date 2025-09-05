@@ -3,6 +3,7 @@ import OutlinedTextSVG from "../shared/ui/OutlinedTextSVG";
 import EmailSubscribe from "../shared/ui/EmailSubscribe";
 import { MetemiBottom } from "../shared/icons/MetemiText";
 import { KrakowText } from "../shared/icons/KrakowText";
+import Video from "../shared/ui/Video";
 
 export default function Krakow() {
   return (
@@ -21,14 +22,21 @@ export default function Krakow() {
       </div>
       <div className="w-full relative overflow-hidden md:h-auto">
         <MetemiBottom className="absolute text-white z-[5] left-1/2 -translate-x-1/2 w-[100vw] -top-4 md:-top-12" />
-        <Image
+
+        <Video
+          src="/videos/krakow.mp4"
+          className="md:aspect-[261/101] relative w-full object-cover parallax-object"
+          aria-label="Krakow timelapse"
+          data-speed-y="0.5"
+        />
+        {/* <Image
           src="/images/krakow-bg-4.jpg"
           alt="Krakow"
           width={800}
           height={200}
           className="md:aspect-[261/101] relative w-full object-cover parallax-object"
           data-speed-y="0.5"
-        />
+        /> */}
         <div className="absolute bottom-[20%] max-w-screen left-1/2 -translate-x-1/2 flex flex-col items-center gap-8">
           <p className="text-2xl-small text-white anim-text-lines">
             <span className="font-bold">Chci pozvánku</span> jako první
